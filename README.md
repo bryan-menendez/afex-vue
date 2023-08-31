@@ -8,11 +8,20 @@ Esta aplicacion ha sido desarrollada como una prueba tecnica de integracion de l
 
 ### Vue
 
-La carpeta "afex-vue" contiene el proyecto principal en Vue. Para realizar un deploy fresco debe utilizar el siguiente comando:
+La carpeta "afex-vue" contiene el proyecto principal en Vue.  
 
-``
+Para realizar una instalacion local del proyecto, debe utilizar los siguientes comandos:
+
+```
+    npm install
+    npm run dev
+```
+
+Para realizar un deploy fresco debe utilizar el siguiente comando:
+
+```
     npm run build
-``
+```
 
 Este comando generara los archivos necesarios para realizar un deploy estatico desde cualquier servidor web, almacenados en la carpeta "dist". Este proyecto en particular fue subido a un bucket publico de Amazon S3.
 
@@ -34,7 +43,7 @@ Los endpoints son los siguientes:
  Endpoint que sirve como proxy de la API de Youtube. Recibe un parametro {uid}, que representa el id del video del cual queremos solicitar informacion.
  
 Response:  
-``
+```
 {
   "items": [
     {
@@ -59,26 +68,26 @@ Response:
     }
   ],...
 }
-``
+```
  
 #### PUT /videos/
 
 Endpoint que recibe nuevos videos. Recibe los parametros uid, title, desc, y length. El parametro length se almacena en formato ISO 8601 y es transformado en el frontend.
 
 Request:  
-``
+```
 {
    "uid": 'MOq0s9G-Uyg', 
    "title": "title", 
    "desc": "desc", 
    "length": "PT34M4S"
-   }
-``
+}
+```
 
 Response:  
-``
+```
     `Put item {uid}`
-``
+```
 
 #### DELETE /videos/{uid}
 
@@ -86,16 +95,16 @@ Endpoint que recibe solicitudes de eliminacion de videos. Recibe el parametro ui
 
 
 Response:  
-``
+```
     `Deleted item {uid}`
-``
+```
 
 #### GET /videos
 
 Endpoint que retorna la lista completa de videos almacenados. Retorna un arreglo con los objetos.
 
 Response:  
-``
+```
 [...,
 {
    "uid": 'MOq0s9G-Uyg', 
@@ -104,7 +113,7 @@ Response:
    "length": "PT34M4S"
    },...
 ]
-``
+```
 
 #### OPTIONS /videos
 
