@@ -39,7 +39,7 @@ La configuracion fue realizada acorde a la siguiente guia de Amazon: <https://do
 
 Los endpoints son los siguientes:
 
-
+![alt text](https://raw.githubusercontent.com/bryan-menendez/afex-vue/master/ss_api.png)
 
 #### GET /videos/{uid}
  Endpoint que sirve como proxy de la API de Youtube. Recibe un parametro {uid}, que representa el id del video del cual queremos solicitar informacion.
