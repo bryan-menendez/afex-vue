@@ -37,6 +37,8 @@ Se debe configurar en las variables de ambiente del lambda la variable API_KEY, 
 
 La configuracion fue realizada acorde a la siguiente guia de Amazon: <https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-dynamo-db.html>
 
+El deploy actual se encuentra configurado para limitar la cantidad maxima de trafico a 10 operaciones por segundo.
+
 Los endpoints son los siguientes:
 
 ![alt text](https://raw.githubusercontent.com/bryan-menendez/afex-vue/master/ss_api.png)
