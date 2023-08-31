@@ -14,7 +14,7 @@ La carpeta "afex-vue" contiene el proyecto principal en Vue. Para realizar un de
     npm run build
 ``
 
-Este comando generara los archivos necesarios para realizar un deploy estatico desde cualquier servidor web. Este proyecto en particular fue subido a un bucket publico de Amazon S3.
+Este comando generara los archivos necesarios para realizar un deploy estatico desde cualquier servidor web, almacenados en la carpeta "dist". Este proyecto en particular fue subido a un bucket publico de Amazon S3.
 
 ### AWS Dynamo DB
 
