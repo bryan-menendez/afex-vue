@@ -27,7 +27,7 @@ Este comando generara los archivos necesarios para realizar un deploy estatico d
 
 ### AWS Dynamo DB
 
-Se debe generar una tabla en DynamoDB llamada "afex", referida en el lambda, que debe poseer una clave primaria de nombre "uid".
+Se debe generar una tabla en DynamoDB llamada "afex", referida en el lambda, que debe poseer una clave primaria de nombre "uid" de tipo string.
 
 
 ### AWS Lambda
@@ -38,6 +38,8 @@ Se debe configurar en las variables de ambiente del lambda la variable API_KEY, 
 La configuracion fue realizada acorde a la siguiente guia de Amazon: <https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-dynamo-db.html>
 
 Los endpoints son los siguientes:
+
+
 
 #### GET /videos/{uid}
  Endpoint que sirve como proxy de la API de Youtube. Recibe un parametro {uid}, que representa el id del video del cual queremos solicitar informacion.
