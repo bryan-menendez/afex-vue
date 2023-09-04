@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide } from 'vue'
+import { ref, provide, reactive } from 'vue'
 import UrlInputComponent from './components/UrlInputComponent.vue'
 import VideoDeleteModal from './components/VideoDeleteModal.vue'
 import VideoDetailsModal from './components/VideoDetailsModal.vue'
@@ -17,7 +17,9 @@ const selected_video = ref({
     'uid': '',
     'title': '',
     'desc': '',
-    'length': ''
+    'length': '',
+    'img_url': '',
+    'website': ''
   })
 
 function onDeleteVideo() {

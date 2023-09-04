@@ -1,6 +1,7 @@
 <script setup>
-import { ref, computed, inject, onUpdated } from 'vue'
+import { ref, computed, inject, onUpdated, onMounted } from 'vue'
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import Player from '@vimeo/player';
 import 'vue-lite-youtube-embed/style.css'
 
 const selected_video = inject('selected_video')
@@ -10,13 +11,23 @@ const video_desc = computed(() => { return selected_video.value.desc })
 const video_title = computed(() => { return selected_video.value.title })
 
 const yt_iframe = ref(null)
+const vimeo_player = ref(null)
 const desc_ref = ref(null)
 const isHidden = ref(true)
+const hideVimeo = ref(true)
+const website = computed(() => { return selected_video.value.website })
 
 function close(){
   try {
     isHidden.value = true
-    yt_iframe.value?.pauseVideo()
+
+    if (website.value == "youtube"){
+      yt_iframe.value?.pauseVideo()
+    }
+    if (website.value == "vimeo"){
+      let player = new Player('vimeo_container', { id: video_uid.value, width: 300, loop: false });
+      player.pause();
+    }
   }
   catch(err) {
     console.log("Cant pause the video because iframe has not been instantiated.")
@@ -26,10 +37,25 @@ function close(){
 
 function show() {
   isHidden.value = false
+
+  if (website.value == "youtube"){
+    hideVimeo.value = true
+  }
+  if (website.value == "vimeo"){
+    hideVimeo.value = false
+    let options = { id: video_uid.value, width: 300, loop: false }
+    let player = new Player('vimeo_container', options);
+    vimeo_player.value = player
+    player.loadVideo(video_uid.value);
+  }
 }
 
 onUpdated(() => {
   desc_ref.value.scrollTop = 0
+})
+
+onMounted(() => {
+  vimeo_player.value = new Player('vimeo_container', { id: 19231868, width: 300, loop: false });
 })
 
 defineExpose({
@@ -48,11 +74,14 @@ defineExpose({
                 <div class="content">
                     <div class="video-container">
                         <div class="video-embed">
-                            <LiteYouTubeEmbed
-                              :id="video_uid"
-                              :title="video_title"
-                              ref="yt_iframe"
-                              />                    
+                            <template v-if="website == 'youtube'">
+                                <LiteYouTubeEmbed
+                                :id="video_uid"
+                                :title="video_title"
+                                ref="yt_iframe"
+                                />                    
+                            </template>
+                            <div id="vimeo_container" :class="{ 'modal-hidden': hideVimeo }" ref="vimeo_player"></div>
                         </div>
                     </div>
                     <div class="video-details">
